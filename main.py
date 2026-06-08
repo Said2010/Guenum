@@ -10,9 +10,10 @@ class Game():
         self.ll = []
 
 #Угадывание
-    def gue(self, n):
+    def gue(self, n, l):
         """Угадывание числа"""
-        
+        k = 0 
+    #Обработка ошибки
         try:
             an = int(input("Угадай число!:\t"))
         except ValueError:
@@ -21,16 +22,20 @@ class Game():
             return
         
         n = int(n)
-        if n < an:
+        if k == l:
+            print("Ты проиграл")
+        elif n < an:
             print("Меньше")
             self.ls.append(an)
             self.gue(n=n)
+            k += 1
         elif an == n:
             print("Ты выйграл")
         elif n > an:
             print("Больше")
             self.ll.append(an)
             self.gue(n=n)
+            k += 1
     
        
 #Игра
@@ -38,12 +43,14 @@ class Game():
         """Запуск игры"""
         game = True
         while game:
-            d = self.num.ch()
-            if d == False:
+            result = self.num.ch()
+            if result == False:
                 game = False
             else:
+                d, l = result
                 n = self.num.ran_x (dif= d)
-                self.gue(n=n)
+
+                self.gue(n=n, l=l)
 
 start = Game()
 start.run_game()

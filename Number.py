@@ -14,17 +14,17 @@ class Number():
             print("Выбрана легкая сложность")
             dif = 1
             li = 5
-            return dif
+            return dif, li
         elif ch.title() == "Средняя" or ch == "2":
             print("Выбрана средняя сложность")
             dif = 2
             li = 7 
-            return dif
+            return dif, li
         elif ch.title() == "Сложная" or ch == "3":
             print("Выбрана трудная сложность")
             dif = 3
             li = 9
-            return dif
+            return dif, li
         else:
             print("Не верный ввод, повторите")
             return self.ch()
