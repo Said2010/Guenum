@@ -8,36 +8,34 @@ class Game():
         self.run_game
         self.ls = []
         self.ll = []
+        self.k = 0 
 
 #Угадывание
-    def gue(self, n, l):
+    def gue(self, n, l, k ):
         """Угадывание числа"""
-        k = 0 
+        if k == l:
+            print(f"Ты проиграл! Загаданное число было: {n}")
+            
     #Обработка ошибки
         try:
             an = int(input("Угадай число!:\t"))
         except ValueError:
             print("Не верное введение числа")
-            self.gue(n)
+            self.gue(n, l, k )
             return
         
         n = int(n)
-        if k == l:
-            print("Ты проиграл")
-        elif n < an:
+        if n < an:
             print("Меньше")
             self.ls.append(an)
-            self.gue(n=n)
-            k += 1
+            self.gue(n=n,l=l, k=k+1)
         elif an == n:
             print("Ты выйграл")
         elif n > an:
             print("Больше")
             self.ll.append(an)
-            self.gue(n=n)
-            k += 1
-    
-       
+            self.gue(n=n, l=l,k=k+1)
+        
 #Игра
     def run_game(self):
         """Запуск игры"""
@@ -50,7 +48,7 @@ class Game():
                 d, l = result
                 n = self.num.ran_x (dif= d)
 
-                self.gue(n=n, l=l)
+                self.gue(n=n, l=l, k=0 )
 
 start = Game()
 start.run_game()
